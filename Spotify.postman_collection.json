@@ -1,0 +1,290 @@
+{
+	"info": {
+		"_postman_id": "e9373ba7-d399-47f6-a033-1916fd956291",
+		"name": "Spotify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44311127"
+	},
+	"item": [
+		{
+			"name": "Artists",
+			"item": [
+				{
+					"name": "Get artist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-v1}}/artists/:artistId",
+							"host": [
+								"{{url-v1}}"
+							],
+							"path": [
+								"artists",
+								":artistId"
+							],
+							"variable": [
+								{
+									"key": "artistId",
+									"value": "41MozSoPIsD1dJM0CLPjZF"
+								}
+							]
+						},
+						"description": "Get artist"
+					},
+					"response": []
+				},
+				{
+					"name": "Top tracks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-v1}}/artists/41MozSoPIsD1dJM0CLPjZF/top-tracks?country=ES",
+							"host": [
+								"{{url-v1}}"
+							],
+							"path": [
+								"artists",
+								"41MozSoPIsD1dJM0CLPjZF",
+								"top-tracks"
+							],
+							"query": [
+								{
+									"key": "country",
+									"value": "ES"
+								}
+							]
+						},
+						"description": "Get artist"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search",
+			"item": [
+				{
+					"name": "Search artists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-v1}}/search?q=Metallica&type=artist&limit=15",
+							"host": [
+								"{{url-v1}}"
+							],
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "Metallica"
+								},
+								{
+									"key": "type",
+									"value": "artist"
+								},
+								{
+									"key": "limit",
+									"value": "15"
+								}
+							]
+						},
+						"description": "Get a list of new releases"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Browse",
+			"item": [
+				{
+					"name": "Get new releases",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-v1}}/browse/new-releases",
+							"host": [
+								"{{url-v1}}"
+							],
+							"path": [
+								"browse",
+								"new-releases"
+							]
+						},
+						"description": "Get a list of new releases"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Get access token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Put Spotify token in env\", function () {\r",
+									"    var auth = pm.response.json();\r",
+									"    if (auth.access_token !== null && auth.access_token !== undefined) {\r",
+									"        pm.environment.set(\"access_token\", auth.access_token);        \r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZTU0NjlmMjY5MzViNDQ3OWIxZDhmNTI1OTUyYjE0ZjI6OGFhM2Q4OGZkY2RlNGYxNmExM2Q3N2QyYWJhNzI0YWE=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{auth-url}}/token",
+							"host": [
+								"{{auth-url}}"
+							],
+							"path": [
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get Access token"
+					},
+					"response": []
+				},
+				{
+					"name": "Herokuapp token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Put Spotify token in env\", function () {\r",
+									"    var auth = pm.response.json();\r",
+									"    if (auth.access_token !== null && auth.access_token !== undefined) {\r",
+									"        pm.environment.set(\"access_token\", auth.access_token);        \r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic ZTU0NjlmMjY5MzViNDQ3OWIxZDhmNTI1OTUyYjE0ZjI6OGFhM2Q4OGZkY2RlNGYxNmExM2Q3N2QyYWJhNzI0YWE=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{heroku-app-url}}/{{clientId}}/{{clientSecret}}",
+							"host": [
+								"{{heroku-app-url}}"
+							],
+							"path": [
+								"{{clientId}}",
+								"{{clientSecret}}"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get Access token"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
