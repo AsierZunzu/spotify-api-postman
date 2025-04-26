@@ -127,7 +127,7 @@
 			"name": "Auth",
 			"item": [
 				{
-					"name": "Get access token",
+					"name": "Get access token [client credentials]",
 					"event": [
 						{
 							"listen": "test",
@@ -142,6 +142,13 @@
 								],
 								"type": "text/javascript",
 								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -172,11 +179,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{auth-url}}/token",
+							"raw": "{{auth-url}}/api/token",
 							"host": [
 								"{{auth-url}}"
 							],
 							"path": [
+								"api",
 								"token"
 							],
 							"query": [
@@ -211,6 +219,23 @@
 								":user_id",
 								"playlists"
 							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "50",
+									"disabled": true
+								},
+								{
+									"key": "locale",
+									"value": "es;q%3D0.5",
+									"disabled": true
+								}
+							],
 							"variable": [
 								{
 									"key": "user_id",
@@ -221,10 +246,100 @@
 						"description": "Get a list of new releases"
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "User requests",
+			"item": [
 				{
 					"name": "Get current user's playlist",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "clientId",
+									"value": "{{clientId}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "state",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Spotify API",
+									"type": "string"
+								},
+								{
+									"key": "expires_in",
+									"value": 3600,
+									"type": "number"
+								},
+								{
+									"key": "refresh_token",
+									"value": "<<this should be automatically generated>>",
+									"type": "string"
+								},
+								{
+									"key": "createdAt",
+									"value": "2025-04-26T09:47:35.331Z",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.spotify.com/authorize",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://accounts.spotify.com/api/token",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -240,6 +355,31 @@
 						"description": "Get a list of new releases"
 					},
 					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
