@@ -188,6 +188,56 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Playlists",
+			"item": [
+				{
+					"name": "Get user playlists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-v1}}/users/:user_id/playlists",
+							"host": [
+								"{{url-v1}}"
+							],
+							"path": [
+								"users",
+								":user_id",
+								"playlists"
+							],
+							"variable": [
+								{
+									"key": "user_id",
+									"value": "pikusmagnificus"
+								}
+							]
+						},
+						"description": "Get a list of new releases"
+					},
+					"response": []
+				},
+				{
+					"name": "Get current user's playlist",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url-v1}}/me/playlists",
+							"host": [
+								"{{url-v1}}"
+							],
+							"path": [
+								"me",
+								"playlists"
+							]
+						},
+						"description": "Get a list of new releases"
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"auth": {
